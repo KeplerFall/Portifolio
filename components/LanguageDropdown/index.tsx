@@ -11,7 +11,7 @@ export default function LanguageDropdown(){
     const {lang, setLang} = useContext(Language)
     const [isOpen, setOpen] = useState(false)
 
-    const currentLanguage = ()=>{
+    const currentLanguage = ():string=>{
         switch(lang){
             case "en": return "English"
             case "pt": return "Português"
@@ -29,15 +29,12 @@ export default function LanguageDropdown(){
         return enImage
     }
 
-
-
-    
     return(
-        <div className={`cursor-pointer bg-gradient-to-br from-[#FF69B4] to-[#984ca5] w-fit h-fit px-[2px] py-[2px] ${isOpen ? `rounded-lg` : `rounded-full`}`} onClick={()=>{setOpen(isOpen? false : true)}}>
+        <div className={`cursor-pointer min-w-[161px] bg-gradient-to-br from-[#FF69B4] to-[#984ca5] w-fit h-fit px-[2px] py-[2px] ${isOpen ? `rounded-lg` : `rounded-full`}`} onClick={()=>{setOpen(isOpen? false : true)}}>
             <div className={`grid grid-cols-1 gap-3 bg-[#212121] ${isOpen ? `rounded-lg` : `rounded-full`} px-4 py-2`}>
                 <div className={`flex gap-2`}>
                     <Image className="rounded-lg" src={currentFlag()} height={20} width={40} alt={`Current Flag`}/>
-                    {currentLanguage()}
+                    <p>{currentLanguage()}</p>
                 </div>
                 <div className={`${!isOpen ? `hidden` : null} flex flex-col gap-3`}>
                     {lang != "pt" ? <div className={`flex gap-2`} onClick={()=> setLang("pt")}><Image className="rounded-lg" src={brImage} height={20} width={40} alt="Brazilian Logo" /> Português</div> : ""}
